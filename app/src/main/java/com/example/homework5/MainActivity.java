@@ -3,6 +3,7 @@ package com.example.homework5;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -85,8 +86,55 @@ public class MainActivity extends AppCompatActivity {
        });
 
 
+        CheckBox checkBoxRed = findViewById(R.id.checkBox_Red);
+        CheckBox checkBoxGreen = findViewById(R.id.checkBox_Green);
+        CheckBox checkBoxBlue = findViewById(R.id.checkBox_Blue);
+        TextView textColors = findViewById(R.id.textViewCheckBox);
+
+        checkBoxRed.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                updateTextColor(textColors, checkBoxRed.isChecked(),checkBoxGreen.isChecked(), checkBoxBlue.isChecked());
+            }
+        });
+
+        checkBoxGreen.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                updateTextColor(textColors, checkBoxRed.isChecked(),checkBoxGreen.isChecked(), checkBoxBlue.isChecked());
+
+            }
+        });
+
+        checkBoxBlue.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                updateTextColor(textColors, checkBoxRed.isChecked(),checkBoxGreen.isChecked(), checkBoxBlue.isChecked());
+            }
+        });
+
+
 
 }
+    private void updateTextColor(TextView textView, boolean isRedChecked, boolean isGreenChecked, boolean isBlueChecked) {
+        if (isRedChecked && isGreenChecked && isBlueChecked) {
+            textView.setTextColor(Color.WHITE);
+        } else if (isRedChecked && isGreenChecked) {
+            textView.setTextColor(Color.YELLOW);
+        } else if (isRedChecked && isBlueChecked) {
+            textView.setTextColor(Color.MAGENTA);
+        } else if (isGreenChecked && isBlueChecked) {
+            textView.setTextColor(Color.CYAN);
+        } else if (isRedChecked) {
+            textView.setTextColor(Color.RED);
+        } else if (isGreenChecked) {
+            textView.setTextColor(Color.GREEN);
+        } else if (isBlueChecked) {
+            textView.setTextColor(Color.BLUE);
+        } else {
+            textView.setTextColor(Color.BLACK);
+        }
+    }
 //Задание 3
     public void EnterOnClick(View view){
         EnterTextView.setText(EnterEditText.getText().toString());
